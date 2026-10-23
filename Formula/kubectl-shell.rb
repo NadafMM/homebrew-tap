@@ -1,8 +1,8 @@
 class KubectlShell < Formula
   desc "Practice kubectl with Tab completion on a sample cluster"
   homepage "https://github.com/NadafMM/kubectl-shell"
-  url "https://github.com/NadafMM/kubectl-shell/releases/download/v0.2.0/kubectl-shell-0.2.0.tar.gz"
-  sha256 "a8d4460fcced5c180f4bbbf0b5bd91dd2e135557b9283238205e238025d16a0c"
+  url "https://github.com/NadafMM/kubectl-shell/releases/download/v0.3.0/kubectl-shell-0.3.0.tar.gz"
+  sha256 "99c910985ee5b5f4bb601663991f131467703b1c7985e88b1bc2b16849099429"
 
   depends_on "node"
 
