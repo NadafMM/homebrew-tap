@@ -1,8 +1,8 @@
 class KubectlShell < Formula
   desc "kubectl shell with live Tab completion and a terminal resource view"
   homepage "https://github.com/NadafMM/kubectl-shell"
-  url "https://github.com/NadafMM/kubectl-shell/releases/download/v0.5.0/kubectl-shell-0.5.0.tar.gz"
-  sha256 "c880b8613ac4794e5e15b219e0570448b61d2b0f27e9366333bce8b199db2ffe"
+  url "https://github.com/NadafMM/kubectl-shell/releases/download/v0.5.1/kubectl-shell-0.5.1.tar.gz"
+  sha256 "4189b6d4472d4a14ea8fcf9a82d6d7ed0dd11f532b6e2bdb910f128c415044cd"
   license "MIT"
 
   depends_on "node"
