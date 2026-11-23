@@ -6,6 +6,6 @@ brew install kubectl-shell
 kube get pods
 ```
 
-`kube` is a kubectl practice shell. Tab completes the word under the cursor. It talks to a sample cluster, not a live one.
+`kube` is a terminal companion for `kubectl`: live Tab completion against your current kubeconfig, plus `plan`, `ask`, and `view`.
 
 [kubectl-shell](https://github.com/NadafMM/kubectl-shell)
