@@ -1,8 +1,9 @@
 class KubectlShell < Formula
-  desc "kubectl shell with Tab completion and a terminal resource view"
+  desc "kubectl shell with live Tab completion and a terminal resource view"
   homepage "https://github.com/NadafMM/kubectl-shell"
-  url "https://github.com/NadafMM/kubectl-shell/releases/download/v0.4.0/kubectl-shell-0.4.0.tar.gz"
-  sha256 "fd3eaea771dfe7aa3d736de3835cb2591f70e6d5f0f601c3b8beb949066122a4"
+  url "https://github.com/NadafMM/kubectl-shell/releases/download/v0.5.0/kubectl-shell-0.5.0.tar.gz"
+  sha256 "c880b8613ac4794e5e15b219e0570448b61d2b0f27e9366333bce8b199db2ffe"
+  license "MIT"
 
   depends_on "node"
 
@@ -13,30 +14,10 @@ class KubectlShell < Formula
       exec "#{Formula["node"].opt_bin}/node" "#{libexec}/kube.cjs" "$@"
     SH
     chmod 0755, bin/"kube"
-
-    node = Formula["node"].opt_bin/"node"
-    script = libexec/"kube.cjs"
-    bash_completion.mkpath
-    fish_completion.mkpath
-    zsh_completion.mkpath
-    (bash_completion/"kube").write Utils.safe_popen_read(node, script, "completion", "bash")
-    (fish_completion/"kube.fish").write Utils.safe_popen_read(node, script, "completion", "fish")
-    (zsh_completion/"_kube").write <<~ZSH
-      #compdef kube
-      local -a vals
-      vals=("${(@f)$(kube __complete --cursor "$CURSOR" --line "$BUFFER" 2>/dev/null)}")
-      (( ${#vals} )) || return
-      if (( ${#vals} == 1 )); then
-        local suf=' '
-        [[ ${vals[1]} == */ || ${vals[1]} == *= ]] && suf=''
-        compadd -S "$suf" -Q -- "${vals[1]}"
-      else
-        compadd -Q -- "${vals[@]}"
-      fi
-    ZSH
+    generate_completions_from_executable(bin/"kube", "completion", shells: [:bash, :zsh, :fish])
   end
 
   test do
-    assert_match "CrashLoopBackOff", shell_output("#{bin}/kube get pods")
+    assert_match version.to_s, shell_output("#{bin}/kube --version")
   end
 end
